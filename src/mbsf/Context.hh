@@ -119,6 +119,12 @@ public:
         int activeUserServicesSoftLimit;
     } capacity;
 
+    struct {
+	int32_t backOffParametersOffsetTime;    
+	int32_t backOffParametersRandomTimePeriod;
+        std::optional<std::string > objectRepairBaseLocator;	
+    } objectRepairParameters;
+
     std::int64_t actPeriodEstablishedStateDuration = 60;
 
     std::optional<std::string> allowedMulticastRange;
@@ -128,6 +134,7 @@ public:
 private:
     void parseCacheControl(Open5GSYamlIter &iter);
     void parseConfiguration(std::string &pc_key, Open5GSYamlIter &iter);
+    void parseObjectRepairParameters(Open5GSYamlIter &iter);
     int parseNotificationConfig(std::string &pc_key, Open5GSYamlIter &iter);
     const std::shared_ptr<Open5GSSBIServer> &findServerForAddr(ogs_socknode_t *node);
 
